@@ -8,19 +8,19 @@ const Postcategory = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await selectCategories();
-      selectCategories(data);
+      setCategories(data);
     };
     fetchCategories();
   }, []);
 
   return (
-    <div className="flex flex-col py-4 gap-4 w-full lg:w-60  justify-start items-center lg:justify-center lg:items-end md:items-end">
+    <div className="flex flex-row lg:flex-col py-4 gap-4 w-full md:w-60 justify-start items-center lg:justify-center lg:items-end md:items-end">
       <FolderOpen size={16} />
-      {categories.map(({ id, name }) => {
-        <Link href={`/blog/category${id}`} key={id}>
+      {categories.map(({ id, name }) => (
+        <Link href={`/blogs/${id}`} key={id}>
           <div>{name}</div>
-        </Link>;
-      })}
+        </Link>
+      ))}
     </div>
   );
 };
